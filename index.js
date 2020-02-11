@@ -3,8 +3,9 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const pdf = require("html-pdf");
 const generateHTML = require("./generateHTML");
-const fileName = require('indext.html');
 const chalk = require("chalk");
+
+const fileName = "./index.html"
 const questions = [{
 
         type: "input",
@@ -26,7 +27,7 @@ const askQuestions = () => {
 };
 
 const writeToFile = (fileName, data) => {
-    fs.writeFile(fileName, data, function(err) {
+    return fs.writeFile(fileName, data, function(err) {
         if (err) console.log(err);
         console.log(chalk.green("file writen successfully"));
     });
@@ -34,20 +35,20 @@ const writeToFile = (fileName, data) => {
 };
 
 const getGitResponse = data => {
-    const queryUrl = `https://api.github.com/users/${data.username}/starred`;
-    const starredUrl = `https://api.github.com/users/${data.username}/starred`;
+    const queryUrl = `https://api.github.com/users/${data.userName}`;
+    const starredUrl = `https://api.github.com/users/${data.userName}/repos`;
     return axios.all([axios.get(queryUrl), axios.get(starredUrl)]);
 
 };
 
-const coverToPDF = page => {
+const convertToPDF = page => {
     const options = {
         format: "letter"
     };
 
     pdf.create(page, options).toFile("./profile.pdf", function(err, res) {
         if (err) return console.log(chalk.yellow(`Something went wrong ${err}`));
-        console.loge(chalk.green(`Profile PDF written`));
+        console.log(chalk.green(`Profile PDF written`));
     });
 };
 
@@ -56,7 +57,7 @@ async function init() {
         const data = await askQuestions();
         const responseArr = await getGitResponse(data);
         const page = generateHTML(data, responseArr);
-        writeToFile(fileName, page);
+        await writeToFile(fileName, page);
         convertToPDF(page);
 
     } catch (error) {

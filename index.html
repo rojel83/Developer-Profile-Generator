@@ -1,34 +1,4 @@
-const colors = {
-    green: {
-        wrapperBackground: "#E6E1C3",
-        headerBackground: "#C1C72C",
-        headerColor: "black",
-        photoBorderColor: "#black"
-    },
-    blue: {
-        wrapperBackground: "#5F64D3",
-        headerBackground: "#26175A",
-        headerColor: "white",
-        photoBorderColor: "#73448C"
-    },
-    pink: {
-        wrapperBackground: "#879CDF",
-        headerBackground: "#FF8374",
-        headerColor: "white",
-        photoBorderColor: "#FEE24C"
-    },
-    red: {
-        wrapperBackground: "#DE9967",
-        headerBackground: "#870603",
-        headerColor: "white",
-        photoBorderColor: "white"
-    }
-};
 
-function generateHTML(data, responseArr) {
-    console.log("data", data);
-    console.log("responseArr", responseArr);
-    return `
   <!DOCTYPE html>
   <html lang="en">
      <head>
@@ -55,7 +25,7 @@ function generateHTML(data, responseArr) {
            height: 100%;
            }
            .wrapper {
-           background-color: ${colors[data.color].wrapperBackground};
+           background-color: #5F64D3;
            padding-top: 100px;
            }
            body {
@@ -97,8 +67,8 @@ function generateHTML(data, responseArr) {
            display: flex;
            justify-content: center;
            flex-wrap: wrap;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: #26175A;
+           color: white;
            padding: 10px;
            width: 95%;
            border-radius: 6px;
@@ -109,7 +79,7 @@ function generateHTML(data, responseArr) {
            border-radius: 50%;
            object-fit: cover;
            margin-top: -75px;
-           border: 6px solid ${colors[data.color].photoBorderColor};
+           border: 6px solid #73448C;
            box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
            }
            .photo-header h1, .photo-header h2 {
@@ -152,8 +122,8 @@ function generateHTML(data, responseArr) {
            .card {
              padding: 20px;
              border-radius: 6px;
-             background-color: ${colors[data.color].headerBackground};
-             color: ${colors[data.color].headerColor};
+             background-color: #26175A;
+             color: white;
              margin: 20px;
            }
            
@@ -177,32 +147,32 @@ function generateHTML(data, responseArr) {
       </head>
       <body class="wrapper">
       <div class="photo-header">
-          <img src="${responseArr[0].data.avatar_url}" alt="" />
+          <img src="https://avatars2.githubusercontent.com/u/22361569?v=4" alt="" />
           <h2>Hello!</h2>
-          <h2>My name is ${responseArr[0].data.name}</h2>
-          <h5>Currently @ ${responseArr[0].data.company} </h5>
+          <h2>My name is Jack Storrs</h2>
+          <h5>Currently @ ServiceCentral Technologies </h5>
           <div class="links-nav">
-              <a target="_blank" href="https://www.google.com/maps/place/${responseArr[0].data.location}" class="nav-link"><i class="fas fa-location-arrow"></i> ${responseArr[0].data.location}</a>
-              <a target="_blank" href="${responseArr[0].data.html_url}" class="nav-link"><i class="fab fa-github-square"></i> GitHub</a>
-              <a target="_blank" href="${responseArr[0].data.blog}" class="nav-link"> <i class="fas fa-rss-square"></i> Blog</a>
+              <a target="_blank" href="https://www.google.com/maps/place/Atlanta, GA" class="nav-link"><i class="fas fa-location-arrow"></i> Atlanta, GA</a>
+              <a target="_blank" href="https://github.com/jsatlien" class="nav-link"><i class="fab fa-github-square"></i> GitHub</a>
+              <a target="_blank" href="https://jsatlien.github.io" class="nav-link"> <i class="fas fa-rss-square"></i> Blog</a>
           </div>
       </div>
       <!--end photo-header-->
       <main class="container">
-          <h3>${responseArr[0].data.bio}</h3>
+          <h3>.NET / MERN Stack JS Developer </h3>
 
           <div class="row">
               <div class="card col">
                   <center>
                       <h3>Public Repositories</h3>
-                      <h4>${responseArr[0].data.public_repos}</h4>
+                      <h4>51</h4>
                   </center>
               </div>
 
               <div class="card col">
                   <center>
                       <h3>Followers</h3>
-                      <h4>${responseArr[0].data.followers}</h4>
+                      <h4>38</h4>
                   </center>
               </div>
           </div>
@@ -211,14 +181,14 @@ function generateHTML(data, responseArr) {
               <center>
                   <div class="card col">
                       <h3>GitHub Stars</h3>
-                      <h4>${responseArr[1].data.length}</h4>
+                      <h4>7</h4>
               </center>
               </div>
 
               <div class="card col">
                   <center>
                       <h3>Following</h3>
-                      <h4>${responseArr[0].data.following}</h4>
+                      <h4>19</h4>
                   </center>
               </div>
           </div>
@@ -229,7 +199,4 @@ function generateHTML(data, responseArr) {
       </footer>
     </body>
   </html>
-        `
-}
-
-module.exports = generateHTML;
+        
